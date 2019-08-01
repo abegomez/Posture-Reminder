@@ -23,11 +23,11 @@ namespace Post
             BindingContext = this;
             Device.StartTimer(TimeSpan.FromSeconds(delayLength), () =>
             {
-                text.Text = " timer is up.";
+                LabelProperty= " timer is up.";
                 
                 return false; // True = Repeat again, False = Stop the timer
             });
-            text.Text = "Is your posture correct?";
+            LabelProperty = "Is your posture correct?";
 
             
         }
@@ -43,27 +43,17 @@ namespace Post
 
         private void OnYesButtonClicked(object sender, EventArgs e)
         {
-            text.Text = "Stand up straight.";
+            LabelProperty= "Stand up straight.";
             delayLength /= 2;
             if (delayLength < 2)
-                delayLength = 2000;
+                delayLength = 2;
         }
         private void OnFixButtonClicked(object sender, EventArgs e)
         {
             LabelProperty = "Great job!";
             delayLength *= 2;
-        }
-
-        private void OnOneMoreButtonClicked(object sender, EventArgs e)
-        {
-            string a = "";
-            if (string.IsNullOrEmpty(a))
-                text.Text = "the string is null";
-            else
-                text.Text = "the string is not null";
-        }
+        }         
       
-
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             aTimer.Stop();
@@ -71,6 +61,5 @@ namespace Post
             text.Text = "Is your posture correct?";
             aTimer.Dispose();
         }
-
     }
 }
